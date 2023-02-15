@@ -1,6 +1,6 @@
 package com.employee.employeeapi.service;
 
-import com.employee.employeeapi.domain.Employee;
+import com.employee.employeeapi.model.Employee;
 import com.employee.employeeapi.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,13 +35,12 @@ public class EmployeeService {
                 ee.setDepartment(employee.getDepartment());
                 ee.setSkill(employee.getSkill());
                 return employeeRepository.save(ee);
-            }).get();
-        }
+                }).get();
+                }
+                return null;
+                }
 
-        return null;
-    }
-
-    public void delete(final Long id) {
-        employeeRepository.deleteById(id);
-    }
+        public void delete(final Long id) {
+                    employeeRepository.deleteById(id);
+                }
 }

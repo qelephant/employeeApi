@@ -1,7 +1,8 @@
 package com.employee.employeeapi.controller;
 
-import com.employee.employeeapi.domain.Employee;
+import com.employee.employeeapi.model.Employee;
 import com.employee.employeeapi.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> create(@RequestBody Employee employee){
-
+    public ResponseEntity<Employee> create(@RequestBody @Valid Employee employee){
         final Employee newEmployee = employeeService.create(employee);
 
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);

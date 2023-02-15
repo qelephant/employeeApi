@@ -1,4 +1,4 @@
-package com.employee.employeeapi.domain;
+package com.employee.employeeapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "skill")
+@Table(name = "department")
 @Data
 @NoArgsConstructor
-public class Skill {
+public class Department {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
-    @ManyToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<Employee> employee;
+    private List<Employee> employee = new ArrayList<>();
 }

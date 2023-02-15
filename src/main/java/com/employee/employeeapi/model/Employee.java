@@ -1,6 +1,9 @@
-package com.employee.employeeapi.domain;
+package com.employee.employeeapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +19,14 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty(message = "Please provide a first name")
+    @Size(max = 100)
     private String firstname;
+    @NotEmpty(message = "Please provide a last name")
+    @Size(max = 100)
     private String lastname;
+    @Email
+    @NotEmpty(message = "Please provide a email")
     private String email;
 
     @ManyToOne

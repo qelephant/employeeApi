@@ -1,26 +1,24 @@
-package com.employee.employeeapi.domain;
+package com.employee.employeeapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "department")
+@Table(name = "skill")
 @Data
 @NoArgsConstructor
-public class Department {
-
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "skill")
     @JsonIgnore
-    private List<Employee> employee = new ArrayList<>();
+    private List<Employee> employee;
 }
